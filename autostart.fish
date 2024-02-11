@@ -15,4 +15,7 @@ flameshot &
 
 #set capslock as escape key
 setxkbmap -option caps:swapescape &
+nm-applet &
+
+blueberry-tray &
 
