@@ -137,9 +137,9 @@ screens = [
                 widget.WindowName(
                     format="  {state}{name}  ",
                     fmt='<i><b>{}</b></i>',
-                    empty_group_string="                 KISHANCJX THE GREAT                 ",
+                    empty_group_string="                 KISHANCJX THE GREAT    ",
                     foreground="#000000",
-                    background="#ff0000",**powerline_right,fontsize=15,max_chars=47,
+                    background="#ff0000",**powerline_right,fontsize=15,max_chars=40,
                 ),
 
 
