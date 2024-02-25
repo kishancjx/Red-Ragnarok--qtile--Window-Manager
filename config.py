@@ -1,7 +1,15 @@
 
+#TODO:
+# Add Borders to fullscreen
+# AppRules for particular windows to appear on correct workspaces
+## 1- EMACS 2-Browser 3-Terminal 4-5-AnyApps 6-Telegram,Discord,Whatsapp 7-  0-Browser 
+# Setup Music Directory and Use Lollipop
+#
+
+
 # Imports
 from libqtile import bar, layout, widget,hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 import subprocess,os,re,socket
 from libqtile.utils import guess_terminal
@@ -60,8 +68,12 @@ keys = [
     Key(["mod1"], "space", lazy.spawn("rofi -show drun"),desc="Launch Rofi"),
     Key(["mod1","shift"],"v",lazy.spawn("xfce4-popup-clipman"),desc="open clip man for clipboard history"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod],"print",lazy.spawn("flameshot gui"),desc="Lauches Flameshot"),
+    Key([],"print",lazy.spawn("flameshot gui"),desc="Lauches Flameshot"),
+    Key([],"F8",lazy.spawn('brave --app="https://chat.openai.com/c/49c31e9f-cab6-4d20-a531-eb97595bc402"')
+        ,desc="Launch Chat Gpt"),
+    
 
+    
 ]
 
 
@@ -89,7 +101,32 @@ for i in groups:
 
          ])
 
+#Scratchpads
+groups.append(ScratchPad('scratchpad',
+    [
+        DropDown('term','alacritty',
+                 width=0.85,height=0.8,x=0.075,y=0.075,opacity=1,on_focus_lost_hide=False),
+        DropDown('music','lollypop',
+                 width=0.85,height=0.8,x=0.075,y=0.075,opacity=1,on_focus_lost_hide=False),
+        DropDown('sound','cinnamon-settings sound',
+                 width=0.85,height=0.8,x=0.075,y=0.075,opacity=1,on_focus_lost_hide=False),
+        DropDown('filemanager','nemo',
+                 width=0.85,height=0.8,x=0.075,y=0.075,opacity=1,on_focus_lost_hide=False),
+        
+        
+        
+]))
+#Keybindings for scratchpads
+keys.extend([
+        Key([],"F1",lazy.group['scratchpad'].dropdown_toggle('term')),
+        Key([],"F4",lazy.group['scratchpad'].dropdown_toggle('music')),
+        Key([],"F9",lazy.group['scratchpad'].dropdown_toggle('sound')),
+        Key([],"F2",lazy.group['scratchpad'].dropdown_toggle('filemanager')),
+        
+     
+    ])
 
+    
 #Layouts
 layouts = [
     # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
